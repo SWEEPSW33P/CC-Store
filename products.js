@@ -38,7 +38,7 @@ const products = [
   { name: "Epic Games 350+ Games (NFA)", desc: "Epic Games account with 350+ games. Non-full access.", price: "€2.40", category: "Gaming", stock: "8", gradient: "linear-gradient(135deg, #10b981, #06b6d4)", icon: "G" },
   { name: "GTA V Premium (FA)", desc: "Grand Theft Auto V Premium edition. Full access account.", price: "€8.00", category: "Gaming", stock: "5", gradient: "linear-gradient(135deg, #10b981, #06b6d4)", icon: "G" },
   { name: "Minecraft (FA)", desc: "Minecraft Java account. Full access, change email and password.", price: "€6.00", category: "Gaming", stock: "17", gradient: "linear-gradient(135deg, #10b981, #06b6d4)", icon: "G" },
-  { name: "DayZ (FA)", desc: "DayZ standalone account. Full access.", price: "€2.00", category: "Gaming", stock: "39", gradient: "linear-gradient(135deg, #10b981, #06b6d4)", icon: "G" },
+  { name: "DayZ (NFA)", desc: "DayZ standalone account. Full access.", price: "€2.00", category: "Gaming", stock: "39", gradient: "linear-gradient(135deg, #10b981, #06b6d4)", icon: "G" },
   { name: "EA FC 26 (FA)", desc: "EA Sports FC 26 account. Full access. Latest edition.", price: "€9.00", category: "Gaming", stock: "2", gradient: "linear-gradient(135deg, #10b981, #06b6d4)", icon: "G" },
   { name: "CS2 Prime 0–300 Hours (FA)", desc: "CS2 Prime account, 0–300 hours. Full access. Clean account.", price: "€11.00", category: "Gaming", stock: "10", gradient: "linear-gradient(135deg, #10b981, #06b6d4)", icon: "G" },
   { name: "CS2 Prime 1100–4000 Hours (FA)", desc: "CS2 Prime account, 1100–4000 hours. Full access. High playtime.", price: "€25.00", category: "Gaming", stock: "10", gradient: "linear-gradient(135deg, #10b981, #06b6d4)", icon: "G" },
