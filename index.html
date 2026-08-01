@@ -1,0 +1,1826 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CorperationCat Store — Premium Digital Goods</title>
+<meta name="description" content="CorperationCat Store. Everything you could need on the internet and more. Insanely low prices.">
+
+<meta property="og:title" content="CorperationCat Store">
+<meta property="og:description" content="Everything you could need on the internet and more. Insanely low prices.">
+<meta property="og:type" content="website">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='22' fill='%238b5cf6'/><text x='50' y='72' font-size='52' font-family='sans-serif' font-weight='bold' fill='white' text-anchor='middle'>CC</text></svg>">
+
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --bg: #09090b;
+  --bg-alt: #0c0c0f;
+  --surface: #131316;
+  --surface-hover: #1a1a20;
+  --border: rgba(255, 255, 255, 0.06);
+  --border-hover: rgba(255, 255, 255, 0.14);
+  --text: #fafafa;
+  --text-secondary: #a1a1aa;
+  --text-muted: #52525b;
+  --accent: #8b5cf6;
+  --accent-light: #a78bfa;
+  --accent-dark: #6366f1;
+  --accent-gradient: linear-gradient(135deg, #8b5cf6 0%, #6366f1 100%);
+  --accent-glow: rgba(139, 92, 246, 0.35);
+  --success: #10b981;
+  --danger: #ef4444;
+  --radius: 16px;
+  --radius-sm: 10px;
+  --transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Inter', sans-serif;
+  line-height: 1.6;
+  overflow-x: hidden;
+  opacity: 0;
+  animation: pageLoad 0.8s ease forwards;
+}
+
+@keyframes pageLoad { to { opacity: 1; } }
+
+a { color: inherit; text-decoration: none; }
+
+h1, h2, h3, h4 { font-family: 'Space Grotesk', sans-serif; font-weight: 600; line-height: 1.2; }
+
+::selection { background: var(--accent); color: white; }
+
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb { background: var(--surface-hover); border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: var(--accent); }
+
+
+.scroll-progress {
+  position: fixed; top: 0; left: 0;
+  height: 2px; width: 0%;
+  background: var(--accent-gradient);
+  z-index: 1000;
+  transition: width 0.1s linear;
+}
+
+
+.noise {
+  position: fixed; inset: 0;
+  pointer-events: none; z-index: 999;
+  opacity: 0.025;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' /%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' /%3E%3C/svg%3E");
+}
+
+
+nav {
+  position: fixed; top: 0; left: 0; right: 0;
+  z-index: 100;
+  padding: 20px 0;
+  transition: var(--transition);
+  border-bottom: 1px solid transparent;
+}
+
+nav.scrolled {
+  background: rgba(9, 9, 11, 0.7);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border);
+  padding: 14px 0;
+}
+
+.nav-container {
+  max-width: 1200px; margin: 0 auto;
+  padding: 0 32px;
+  display: flex; justify-content: space-between; align-items: center;
+}
+
+.logo {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700; font-size: 1.25rem;
+  letter-spacing: -0.02em;
+  display: flex; align-items: center; gap: 10px;
+  cursor: pointer;
+}
+
+.logo-mark {
+  width: 36px; height: 36px;
+  border-radius: 8px;
+  background: var(--accent-gradient);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 0.85rem; font-weight: 700;
+  color: white;
+  box-shadow: 0 4px 12px var(--accent-glow);
+}
+
+.nav-links {
+  display: flex; align-items: center; gap: 36px;
+}
+
+.nav-links a {
+  font-size: 0.9rem; color: var(--text-secondary);
+  font-weight: 500;
+  transition: color 0.3s;
+  position: relative;
+  cursor: pointer;
+}
+
+.nav-links a:not(.nav-cta)::after {
+  content: '';
+  position: absolute;
+  bottom: -4px; left: 0;
+  width: 0; height: 1px;
+  background: var(--accent);
+  transition: width 0.3s;
+}
+
+.nav-links a:not(.nav-cta):hover { color: var(--text); }
+.nav-links a:not(.nav-cta):hover::after { width: 100%; }
+.nav-links a.active { color: var(--text); }
+.nav-links a.active::after { width: 100%; }
+
+.nav-cta {
+  background: var(--accent-gradient);
+  color: white !important;
+  padding: 10px 22px;
+  border-radius: 8px;
+  font-weight: 600; font-size: 0.875rem;
+  transition: var(--transition);
+  box-shadow: 0 4px 16px var(--accent-glow);
+}
+
+.nav-cta:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 24px var(--accent-glow);
+}
+
+.hamburger {
+  display: none;
+  flex-direction: column; gap: 5px;
+  cursor: pointer; padding: 4px;
+}
+
+.hamburger span {
+  width: 24px; height: 2px;
+  background: var(--text);
+  transition: var(--transition);
+  border-radius: 2px;
+}
+
+.hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+.hamburger.active span:nth-child(2) { opacity: 0; }
+.hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+
+
+.page { display: none; min-height: 100vh; }
+.page.active { display: block; }
+
+
+.hero {
+  min-height: 100vh;
+  display: flex; align-items: center; justify-content: center;
+  position: relative; overflow: hidden;
+  padding: 120px 32px 80px;
+}
+
+.hero-bg { position: absolute; inset: 0; z-index: 0; }
+
+.orb {
+  position: absolute; border-radius: 50%;
+  filter: blur(90px); opacity: 0.3;
+  animation: float 25s ease-in-out infinite;
+}
+
+.orb-1 { background: var(--accent); width: 600px; height: 600px; top: -200px; left: -150px; }
+.orb-2 { background: var(--accent-dark); width: 500px; height: 500px; bottom: -150px; right: -100px; animation-delay: -8s; }
+.orb-3 { background: #a855f7; width: 350px; height: 350px; top: 40%; left: 45%; animation-delay: -15s; opacity: 0.15; }
+
+@keyframes float {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33% { transform: translate(40px, -30px) scale(1.05); }
+  66% { transform: translate(-30px, 40px) scale(0.95); }
+}
+
+.hero-grid {
+  position: absolute; inset: 0;
+  background-image:
+    linear-gradient(rgba(255,255,255,0.015) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.015) 1px, transparent 1px);
+  background-size: 60px 60px;
+  mask-image: radial-gradient(ellipse 80% 60% at 50% 40%, black, transparent);
+  -webkit-mask-image: radial-gradient(ellipse 80% 60% at 50% 40%, black, transparent);
+}
+
+.hero-content { position: relative; z-index: 1; text-align: center; max-width: 760px; }
+
+.hero-eyebrow {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-size: 0.8rem; font-weight: 500;
+  color: var(--accent-light);
+  letter-spacing: 0.08em; text-transform: uppercase;
+  padding: 8px 16px;
+  border: 1px solid rgba(139, 92, 246, 0.2);
+  border-radius: 100px;
+  background: rgba(139, 92, 246, 0.05);
+  margin-bottom: 32px;
+  animation: slideUp 0.8s 0.1s ease both;
+}
+
+.hero-eyebrow .dot {
+  width: 6px; height: 6px; border-radius: 50%;
+  background: var(--success);
+  box-shadow: 0 0 8px var(--success);
+  animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+
+.hero h1 {
+  font-size: clamp(2.5rem, 7vw, 4.75rem);
+  font-weight: 700; letter-spacing: -0.03em;
+  margin-bottom: 24px;
+  animation: slideUp 0.8s 0.2s ease both;
+}
+
+.gradient-text {
+  background: linear-gradient(135deg, #fafafa 0%, #a78bfa 60%, #818cf8 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.hero p {
+  font-size: clamp(1rem, 2vw, 1.2rem);
+  color: var(--text-secondary);
+  max-width: 540px; margin: 0 auto 40px;
+  animation: slideUp 0.8s 0.3s ease both;
+}
+
+.hero-cta {
+  display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;
+  animation: slideUp 0.8s 0.4s ease both;
+}
+
+.btn {
+  display: inline-flex; align-items: center; gap: 10px;
+  padding: 14px 28px; border-radius: 10px;
+  font-weight: 600; font-size: 0.95rem;
+  transition: var(--transition);
+  cursor: pointer; border: none;
+  font-family: inherit;
+}
+
+.btn-primary {
+  background: var(--accent-gradient);
+  color: white;
+  box-shadow: 0 4px 20px var(--accent-glow);
+}
+
+.btn-primary:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 32px var(--accent-glow);
+}
+
+.btn-secondary {
+  background: var(--surface);
+  color: var(--text);
+  border: 1px solid var(--border);
+}
+
+.btn-secondary:hover {
+  background: var(--surface-hover);
+  border-color: var(--border-hover);
+  transform: translateY(-3px);
+}
+
+.hero-stats {
+  display: flex; gap: 48px; justify-content: center;
+  margin-top: 64px;
+  animation: slideUp 0.8s 0.5s ease both;
+}
+
+.hero-stat { text-align: center; }
+
+.hero-stat-value {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 2rem; font-weight: 700;
+  background: var(--accent-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.hero-stat-label {
+  font-size: 0.8rem; color: var(--text-muted);
+  text-transform: uppercase; letter-spacing: 0.05em;
+  margin-top: 4px;
+}
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+
+section { padding: 100px 32px; position: relative; }
+
+.section-container { max-width: 1200px; margin: 0 auto; }
+
+.section-header { text-align: center; margin-bottom: 64px; }
+
+.section-eyebrow {
+  font-size: 0.8rem; font-weight: 500;
+  color: var(--accent-light);
+  letter-spacing: 0.08em; text-transform: uppercase;
+  margin-bottom: 16px; display: block;
+}
+
+.section-header h2 {
+  font-size: clamp(2rem, 5vw, 3rem);
+  font-weight: 700; letter-spacing: -0.02em;
+  margin-bottom: 16px;
+}
+
+.section-header p {
+  color: var(--text-secondary);
+  font-size: 1.05rem;
+  max-width: 480px; margin: 0 auto;
+}
+
+
+#featured { background: var(--bg-alt); }
+
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 24px;
+}
+
+.product-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  transition: var(--transition);
+  cursor: pointer;
+  position: relative;
+}
+
+.product-card::before {
+  content: '';
+  position: absolute; inset: 0;
+  border-radius: var(--radius);
+  padding: 1px;
+  background: linear-gradient(135deg, var(--accent), transparent);
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: 0;
+  transition: opacity 0.4s;
+  pointer-events: none;
+}
+
+.product-card:hover {
+  transform: translateY(-6px);
+  background: var(--surface-hover);
+  border-color: transparent;
+}
+
+.product-card:hover::before { opacity: 1; }
+
+.product-image {
+  height: 140px;
+  position: relative;
+  overflow: hidden;
+  display: flex; align-items: center; justify-content: center;
+}
+
+.product-image::after {
+  content: '';
+  position: absolute; inset: 0;
+  background: linear-gradient(180deg, transparent 50%, rgba(0,0,0,0.4));
+}
+
+.product-icon {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 2.5rem; font-weight: 700;
+  color: rgba(255, 255, 255, 0.2);
+  z-index: 1;
+}
+
+.product-tag {
+  position: absolute; top: 14px; left: 14px;
+  font-size: 0.7rem; font-weight: 600;
+  text-transform: uppercase; letter-spacing: 0.05em;
+  padding: 5px 12px; border-radius: 100px;
+  background: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  color: white; z-index: 2;
+  border: 1px solid rgba(255,255,255,0.1);
+}
+
+.product-stock {
+  position: absolute; top: 14px; right: 14px;
+  font-size: 0.7rem; font-weight: 600;
+  padding: 5px 12px; border-radius: 100px;
+  background: rgba(16, 185, 129, 0.15);
+  color: var(--success);
+  border: 1px solid rgba(16, 185, 129, 0.2);
+  z-index: 2;
+  display: flex; align-items: center; gap: 6px;
+}
+
+.product-stock::before {
+  content: '';
+  width: 5px; height: 5px; border-radius: 50%;
+  background: var(--success);
+}
+
+.product-stock.out-of-stock {
+  background: rgba(239, 68, 68, 0.1);
+  color: var(--danger);
+  border-color: rgba(239, 68, 68, 0.2);
+}
+
+.product-stock.out-of-stock::before { background: var(--danger); }
+
+.product-info { padding: 20px 24px; }
+
+.product-info h3 {
+  font-size: 1rem; margin-bottom: 6px;
+  line-height: 1.4;
+}
+
+.product-info p {
+  font-size: 0.85rem; color: var(--text-secondary);
+  margin-bottom: 16px;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.product-footer {
+  display: flex; justify-content: space-between; align-items: center;
+  padding-top: 16px;
+  border-top: 1px solid var(--border);
+}
+
+.product-price {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 1.3rem; font-weight: 700;
+  color: var(--text);
+}
+
+.product-buy {
+  font-size: 0.85rem;
+  color: var(--accent-light);
+  font-weight: 600;
+  display: flex; align-items: center; gap: 6px;
+  transition: gap 0.3s;
+}
+
+.product-card:hover .product-buy { gap: 10px; }
+
+
+.catalog-hero {
+  padding: 140px 32px 60px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.catalog-hero .orb {
+  opacity: 0.15;
+}
+
+.catalog-hero-content {
+  position: relative; z-index: 1;
+  max-width: 700px; margin: 0 auto;
+}
+
+.catalog-hero h1 {
+  font-size: clamp(2.2rem, 6vw, 3.5rem);
+  font-weight: 700; letter-spacing: -0.03em;
+  margin-bottom: 16px;
+}
+
+.catalog-hero p {
+  color: var(--text-secondary);
+  font-size: 1.1rem;
+  margin-bottom: 0;
+}
+
+.catalog-section {
+  padding: 0 32px 100px;
+}
+
+.catalog-container {
+  max-width: 1200px; margin: 0 auto;
+}
+
+.catalog-toolbar {
+  position: sticky;
+  top: 72px;
+  z-index: 50;
+  background: rgba(9, 9, 11, 0.8);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 16px 20px;
+  margin-bottom: 32px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.catalog-search {
+  position: relative;
+  flex: 1;
+  min-width: 200px;
+}
+
+.catalog-search input {
+  width: 100%;
+  padding: 10px 16px 10px 40px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  color: var(--text);
+  font-family: inherit;
+  font-size: 0.9rem;
+  transition: var(--transition);
+}
+
+.catalog-search input:focus {
+  outline: none;
+  border-color: var(--accent);
+  background: var(--surface-hover);
+}
+
+.catalog-search input::placeholder { color: var(--text-muted); }
+
+.catalog-search svg {
+  position: absolute;
+  left: 14px; top: 50%;
+  transform: translateY(-50%);
+  width: 16px; height: 16px;
+  color: var(--text-muted);
+  pointer-events: none;
+}
+
+.filter-pills {
+  display: flex; flex-wrap: wrap; gap: 8px;
+}
+
+.filter-pill {
+  padding: 8px 16px;
+  border-radius: 100px;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text-secondary);
+  font-size: 0.82rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: var(--transition);
+  font-family: inherit;
+  white-space: nowrap;
+}
+
+.filter-pill:hover {
+  border-color: var(--border-hover);
+  color: var(--text);
+}
+
+.filter-pill.active {
+  background: var(--accent-gradient);
+  border-color: transparent;
+  color: white;
+  box-shadow: 0 2px 12px var(--accent-glow);
+}
+
+.catalog-count {
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.catalog-count span {
+  color: var(--accent-light);
+  font-weight: 600;
+}
+
+.no-results {
+  text-align: center;
+  padding: 80px 32px;
+  color: var(--text-muted);
+}
+
+.no-results h3 {
+  font-size: 1.2rem;
+  margin-bottom: 8px;
+  color: var(--text-secondary);
+}
+
+
+.category-group {
+  margin-bottom: 56px;
+}
+
+.category-group:last-child { margin-bottom: 0; }
+
+.category-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.category-header h3 {
+  font-size: 1.3rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+.category-badge {
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: 100px;
+  background: rgba(139, 92, 246, 0.1);
+  color: var(--accent-light);
+  border: 1px solid rgba(139, 92, 246, 0.15);
+}
+
+
+#about { background: var(--bg); }
+
+.about-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: center;
+}
+
+.about-text h2 {
+  font-size: clamp(2rem, 5vw, 2.75rem);
+  margin-bottom: 24px;
+  letter-spacing: -0.02em;
+}
+
+.about-text p {
+  color: var(--text-secondary);
+  margin-bottom: 16px;
+  font-size: 1.05rem;
+}
+
+.about-features {
+  display: grid; gap: 20px;
+}
+
+.about-feature {
+  display: flex; gap: 16px;
+  align-items: flex-start;
+  padding: 20px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  transition: var(--transition);
+}
+
+.about-feature:hover {
+  border-color: var(--border-hover);
+  transform: translateX(4px);
+}
+
+.feature-icon {
+  width: 40px; height: 40px;
+  border-radius: 10px;
+  background: rgba(139, 92, 246, 0.1);
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+  font-size: 1.1rem;
+}
+
+.feature-content h4 { font-size: 0.95rem; margin-bottom: 4px; }
+
+.feature-content p {
+  font-size: 0.85rem; color: var(--text-muted); margin: 0;
+}
+
+
+.info-bar {
+  background: var(--bg-alt);
+  padding: 48px 32px;
+}
+
+.info-container {
+  max-width: 1200px; margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.info-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 28px;
+  text-align: center;
+  transition: var(--transition);
+}
+
+.info-card:hover {
+  border-color: var(--border-hover);
+  transform: translateY(-4px);
+}
+
+.info-card-icon {
+  width: 48px; height: 48px;
+  border-radius: 12px;
+  background: var(--accent-gradient);
+  display: flex; align-items: center; justify-content: center;
+  margin: 0 auto 16px;
+  font-size: 1.3rem;
+  box-shadow: 0 4px 16px var(--accent-glow);
+}
+
+.info-card h4 { font-size: 1rem; margin-bottom: 8px; }
+
+.info-card p {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  margin: 0;
+}
+
+
+.cta-section {
+  text-align: center;
+  padding: 120px 32px;
+  position: relative;
+  overflow: hidden;
+}
+
+.cta-bg {
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse 60% 80% at 50% 50%, rgba(139, 92, 246, 0.08), transparent);
+}
+
+.cta-content {
+  position: relative; z-index: 1;
+  max-width: 600px; margin: 0 auto;
+}
+
+.cta-content h2 {
+  font-size: clamp(2rem, 5vw, 3rem);
+  margin-bottom: 20px;
+  letter-spacing: -0.02em;
+}
+
+.cta-content p {
+  color: var(--text-secondary);
+  font-size: 1.1rem;
+  margin-bottom: 40px;
+}
+
+
+footer {
+  background: var(--bg-alt);
+  border-top: 1px solid var(--border);
+  padding: 60px 32px 32px;
+}
+
+.footer-container { max-width: 1200px; margin: 0 auto; }
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  gap: 48px;
+  margin-bottom: 48px;
+}
+
+.footer-brand h3 {
+  font-size: 1.2rem;
+  margin-bottom: 12px;
+  display: flex; align-items: center; gap: 10px;
+}
+
+.footer-brand p {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  max-width: 300px;
+}
+
+.footer-col h4 {
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-muted);
+  margin-bottom: 16px;
+}
+
+.footer-col a {
+  display: block;
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  margin-bottom: 10px;
+  transition: color 0.3s;
+  cursor: pointer;
+}
+
+.footer-col a:hover { color: var(--accent-light); }
+
+.footer-bottom {
+  border-top: 1px solid var(--border);
+  padding-top: 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.footer-bottom p {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+.footer-social {
+  display: flex; gap: 12px;
+}
+
+.footer-social a {
+  width: 36px; height: 36px;
+  border-radius: 8px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: center;
+  transition: var(--transition);
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.footer-social a:hover {
+  background: var(--accent);
+  border-color: var(--accent);
+  transform: translateY(-2px);
+  color: white;
+}
+
+
+[data-reveal] {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+[data-reveal].revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+
+@media (max-width: 900px) {
+  .about-grid { grid-template-columns: 1fr; gap: 48px; }
+  .footer-grid { grid-template-columns: 1fr 1fr; gap: 32px; }
+  .footer-brand { grid-column: 1 / -1; }
+  .info-container { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 768px) {
+  .nav-links {
+    position: fixed;
+    top: 0; right: -100%;
+    width: 75%; height: 100vh;
+    background: rgba(9, 9, 11, 0.95);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    flex-direction: column;
+    justify-content: center;
+    gap: 32px;
+    transition: right 0.4s ease;
+    border-left: 1px solid var(--border);
+  }
+
+  .nav-links.active { right: 0; }
+  .nav-links a { font-size: 1.1rem; }
+  .hamburger { display: flex; z-index: 101; }
+
+  .hero-stats { gap: 32px; }
+  .hero-stat-value { font-size: 1.5rem; }
+
+  section { padding: 70px 20px; }
+  .catalog-hero { padding: 120px 20px 40px; }
+  .catalog-section { padding: 0 20px 70px; }
+
+  .footer-grid { grid-template-columns: 1fr; }
+  .footer-bottom { flex-direction: column; text-align: center; }
+
+  .catalog-toolbar {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .filter-pills {
+    overflow-x: auto;
+    flex-wrap: nowrap;
+    padding-bottom: 4px;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .filter-pill { flex-shrink: 0; }
+}
+
+@media (max-width: 480px) {
+  .hero-cta { flex-direction: column; align-items: stretch; }
+  .btn { justify-content: center; }
+  .hero-stats { flex-wrap: wrap; gap: 24px; }
+  .product-grid { grid-template-columns: 1fr; }
+}
+
+
+.catalog-loading {
+  text-align: center;
+  padding: 80px;
+  color: var(--text-muted);
+  font-size: 0.9rem;
+}
+
+
+.modal-overlay {
+  position: fixed; inset: 0;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  z-index: 200;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 32px;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.modal-overlay.active {
+  display: flex;
+  opacity: 1;
+}
+
+.modal {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  max-width: 480px;
+  width: 100%;
+  padding: 32px;
+  position: relative;
+  transform: scale(0.95);
+  transition: transform 0.3s;
+}
+
+.modal-overlay.active .modal { transform: scale(1); }
+
+.modal-close {
+  position: absolute;
+  top: 16px; right: 16px;
+  width: 32px; height: 32px;
+  border-radius: 8px;
+  background: var(--surface-hover);
+  border: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer;
+  color: var(--text-secondary);
+  font-size: 1.2rem;
+  transition: var(--transition);
+}
+
+.modal-close:hover {
+  background: var(--danger);
+  color: white;
+  border-color: var(--danger);
+}
+
+.modal h3 {
+  font-size: 1.3rem;
+  margin-bottom: 8px;
+}
+
+.modal-category {
+  font-size: 0.78rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--accent-light);
+  margin-bottom: 16px;
+}
+
+.modal p {
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+  margin-bottom: 24px;
+  line-height: 1.7;
+}
+
+.modal-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 0;
+  border-top: 1px solid var(--border);
+  margin-bottom: 24px;
+}
+
+.modal-price {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 1.8rem;
+  font-weight: 700;
+}
+
+.modal-stock {
+  font-size: 0.82rem;
+  font-weight: 600;
+  padding: 6px 14px;
+  border-radius: 100px;
+  background: rgba(16, 185, 129, 0.15);
+  color: var(--success);
+  border: 1px solid rgba(16, 185, 129, 0.2);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.modal-stock::before {
+  content: '';
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: var(--success);
+}
+
+.modal-stock.out-of-stock {
+  background: rgba(239, 68, 68, 0.1);
+  color: var(--danger);
+  border-color: rgba(239, 68, 68, 0.2);
+}
+
+.modal-stock.out-of-stock::before { background: var(--danger); }
+
+.modal-buy {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  padding: 14px;
+  border-radius: 10px;
+  background: var(--accent-gradient);
+  color: white;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  border: none;
+  font-family: inherit;
+  transition: var(--transition);
+  box-shadow: 0 4px 20px var(--accent-glow);
+}
+
+.modal-buy:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 28px var(--accent-glow);
+}
+
+.modal-buy.disabled {
+  background: var(--surface-hover);
+  color: var(--text-muted);
+  cursor: not-allowed;
+  box-shadow: none;
+  transform: none;
+}
+</style>
+</head>
+<body>
+
+<div class="noise"></div>
+<div class="scroll-progress" id="scrollProgress"></div>
+
+<!-- NAVIGATION -->
+<nav id="nav">
+  <div class="nav-container">
+    <div class="logo" onclick="navigate('home')">
+      <div class="logo-mark">CC</div>
+      CorperationCat Store
+    </div>
+    <div class="nav-links" id="navLinks">
+      <a onclick="navigate('home')" id="navHome">Home</a>
+      <a onclick="navigate('catalog')" id="navCatalog">Catalog</a>
+      <a onclick="navigate('about')" id="navAbout">About</a>
+      <a href="https://discord.gg/AXYrRzeJar" target="_blank" class="nav-cta">Join Discord</a>
+    </div>
+    <div class="hamburger" id="hamburger" onclick="toggleMenu()">
+      <span></span><span></span><span></span>
+    </div>
+  </div>
+</nav>
+
+<!-- HOME PAGE -->
+<div class="page active" id="page-home">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-bg">
+      <div class="orb orb-1"></div>
+      <div class="orb orb-2"></div>
+      <div class="orb orb-3"></div>
+    </div>
+    <div class="hero-grid"></div>
+
+    <div class="hero-content">
+      <div class="hero-eyebrow">
+        <span class="dot"></span>
+        Stock Updated Regularly
+      </div>
+      <h1>
+        <span class="gradient-text">Everything you need.</span><br>
+        Insanely low prices.
+      </h1>
+      <p>
+        Discord accounts, gaming, streaming, VPNs, social media boosting, and exclusive methods. Fair prices, instant delivery, 20-hour replacement warranty on every purchase.
+      </p>
+      <div class="hero-cta">
+        <button class="btn btn-primary" onclick="navigate('catalog')">Browse Catalog</button>
+        <a href="https://discord.gg/AXYrRzeJar" target="_blank" class="btn btn-secondary">Join Discord</a>
+      </div>
+
+      <div class="hero-stats">
+        <div class="hero-stat">
+          <div class="hero-stat-value" data-count="60">0</div>
+          <div class="hero-stat-label">Products</div>
+        </div>
+        <div class="hero-stat">
+          <div class="hero-stat-value" data-count="11">0</div>
+          <div class="hero-stat-label">Categories</div>
+        </div>
+        <div class="hero-stat">
+          <div class="hero-stat-value">24/7</div>
+          <div class="hero-stat-label">Support</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURED PRODUCTS -->
+  <section id="featured">
+    <div class="section-container">
+      <div class="section-header" data-reveal>
+        <span class="section-eyebrow">Popular Items</span>
+        <h2>Featured Stock</h2>
+        <p>A quick look at what's moving. Browse the full catalog for everything available.</p>
+      </div>
+
+      <div class="product-grid" id="featuredGrid">
+        <!-- Featured products injected by JS -->
+      </div>
+
+      <div style="text-align: center; margin-top: 48px;" data-reveal>
+        <button class="btn btn-secondary" onclick="navigate('catalog')">View Full Catalog →</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="section-container">
+      <div class="about-grid">
+        <div class="about-text" data-reveal>
+          <span class="section-eyebrow">About</span>
+          <h2>Built on trust, driven by quality.</h2>
+          <p>
+            CorperationCat Store started with a simple principle: deliver exactly what was promised, every single time. No shortcuts, no excuses.
+          </p>
+          <p>
+            Every transaction is handled personally. Every customer gets the same level of attention whether it's their first purchase or their fiftieth. Reputation isn't a marketing term — it's the only metric that matters.
+          </p>
+        </div>
+
+        <div class="about-features" data-reveal>
+          <div class="about-feature">
+            <div class="feature-icon">⚡</div>
+            <div class="feature-content">
+              <h4>Instant Delivery</h4>
+              <p>Most items delivered within minutes. Manual delivery for account-based purchases.</p>
+            </div>
+          </div>
+          <div class="about-feature">
+            <div class="feature-icon">🔒</div>
+            <div class="feature-content">
+              <h4>20-Hour Replacement Warranty</h4>
+              <p>Every purchase includes a 20-hour replacement warranty. If something breaks, it gets replaced.</p>
+            </div>
+          </div>
+          <div class="about-feature">
+            <div class="feature-icon">💬</div>
+            <div class="feature-content">
+              <h4>Direct Support</h4>
+              <p>No ticket system, no bots. Message directly on Discord and get a response from a real person.</p>
+            </div>
+          </div>
+          <div class="about-feature">
+            <div class="feature-icon">↻</div>
+            <div class="feature-content">
+              <h4>Stock Refresh</h4>
+              <p>Inventory updates regularly. New items added based on demand and availability.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- INFO BAR -->
+  <section class="info-bar" style="padding-top: 0; padding-bottom: 48px;">
+    <div class="info-container">
+      <div class="info-card" data-reveal>
+        <div class="info-card-icon">🛡️</div>
+        <h4>FA = Full Access</h4>
+        <p>Change email, password, full control over the account.</p>
+      </div>
+      <div class="info-card" data-reveal>
+        <div class="info-card-icon">📋</div>
+        <h4>NFA = Non Full Access</h4>
+        <p>Shared access. Use the account but cannot change credentials.</p>
+      </div>
+      <div class="info-card" data-reveal>
+        <div class="info-card-icon">⏱️</div>
+        <h4>20h Warranty</h4>
+        <p>Replacement warranty included with every single purchase, no exceptions.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-section">
+    <div class="cta-bg"></div>
+    <div class="cta-content" data-reveal>
+      <h2>Ready to make a purchase?</h2>
+      <p>Join the Discord server to browse full stock, check vouches, and place orders. Delivery is handled through tickets for security.</p>
+      <a href="https://discord.gg/AXYrRzeJar" target="_blank" class="btn btn-primary" style="font-size: 1.05rem; padding: 16px 36px;">
+        Join the Discord
+      </a>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <h3><div class="logo-mark">CC</div> CorperationCat Store</h3>
+          <p>Everything you could need on the internet and more. Insanely low prices. Built on reputation.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Navigate</h4>
+          <a onclick="navigate('home')">Home</a>
+          <a onclick="navigate('catalog')">Catalog</a>
+          <a onclick="navigate('about')">About</a>
+        </div>
+        <div class="footer-col">
+          <h4>Links</h4>
+          <a href="https://discord.gg/AXYrRzeJar" target="_blank">Discord</a>
+          <a href="https://github.com/SWEEPSW33P/ShopStock" target="_blank">GitHub Stock</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2024 CorperationCat Store. All rights reserved.</p>
+        <div class="footer-social">
+          <a href="https://discord.gg/AXYrRzeJar" target="_blank" title="Discord">DC</a>
+          <a href="https://github.com/SWEEPSW33P/ShopStock" target="_blank" title="GitHub">GH</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+</div>
+
+<!-- CATALOG PAGE -->
+<div class="page" id="page-catalog">
+  <div class="catalog-hero">
+    <div class="hero-bg">
+      <div class="orb orb-1"></div>
+      <div class="orb orb-2"></div>
+    </div>
+    <div class="catalog-hero-content">
+      <div class="hero-eyebrow">
+        <span class="dot"></span>
+        Full Inventory
+      </div>
+      <h1><span class="gradient-text">Product Catalog</span></h1>
+      <p>Browse all available stock. Use the filters to find what you need. Click any product for details.</p>
+    </div>
+  </div>
+
+  <div class="catalog-section">
+    <div class="catalog-container">
+      <div class="catalog-toolbar">
+        <div class="catalog-search">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <circle cx="11" cy="11" r="8"/>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+          </svg>
+          <input type="text" id="searchInput" placeholder="Search products..." oninput="filterCatalog()">
+        </div>
+        <div class="filter-pills" id="filterPills">
+        </div>
+      </div>
+
+      <div class="catalog-count" id="catalogCount"></div>
+
+      <div id="catalogGrid">
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER (shared) -->
+  <footer>
+    <div class="footer-container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <h3><div class="logo-mark">CC</div> CorperationCat Store</h3>
+          <p>Everything you could need on the internet and more. Insanely low prices. Built on reputation.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Navigate</h4>
+          <a onclick="navigate('home')">Home</a>
+          <a onclick="navigate('catalog')">Catalog</a>
+          <a onclick="navigate('about')">About</a>
+        </div>
+        <div class="footer-col">
+          <h4>Links</h4>
+          <a href="https://discord.gg/AXYrRzeJar" target="_blank">Discord</a>
+          <a href="https://github.com/SWEEPSW33P/ShopStock" target="_blank">GitHub Stock</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2024 CorperationCat Store. All rights reserved.</p>
+        <div class="footer-social">
+          <a href="https://discord.gg/AXYrRzeJar" target="_blank" title="Discord">DC</a>
+          <a href="https://github.com/SWEEPSW33P/ShopStock" target="_blank" title="GitHub">GH</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+</div>
+
+<div class="page" id="page-about">
+  <section class="catalog-hero">
+    <div class="hero-bg">
+      <div class="orb orb-1"></div>
+      <div class="orb orb-2"></div>
+    </div>
+    <div class="catalog-hero-content">
+      <div class="hero-eyebrow">
+        <span class="dot"></span>
+        Who We Are
+      </div>
+      <h1><span class="gradient-text">About Us</span></h1>
+      <p>What CorperationCat Store is about and why reputation matters.</p>
+    </div>
+  </div>
+
+  <section id="about" style="padding-top: 0;">
+    <div class="section-container">
+      <div class="about-grid">
+        <div class="about-text" data-reveal>
+          <span class="section-eyebrow">Our Story</span>
+          <h2>Built on trust, driven by quality.</h2>
+          <p>
+            CorperationCat Store started with a simple principle: deliver exactly what was promised, every single time. No shortcuts, no excuses.
+          </p>
+          <p>
+            Every transaction is handled personally. Every customer gets the same level of attention whether it's their first purchase or their fiftieth. Reputation isn't a marketing term — it's the only metric that matters.
+          </p>
+          <p>
+            From Discord accounts to gaming, streaming, VPNs, and exclusive methods — if it's listed, it's in stock. Every purchase comes with a 20-hour replacement warranty.
+          </p>
+        </div>
+
+        <div class="about-features" data-reveal>
+          <div class="about-feature">
+            <div class="feature-icon">⚡</div>
+            <div class="feature-content">
+              <h4>Instant Delivery</h4>
+              <p>Most items delivered within minutes. Manual delivery for account-based purchases.</p>
+            </div>
+          </div>
+          <div class="about-feature">
+            <div class="feature-icon">🔒</div>
+            <div class="feature-content">
+              <h4>20-Hour Replacement Warranty</h4>
+              <p>Every purchase includes a 20-hour replacement warranty. If something breaks, it gets replaced.</p>
+            </div>
+          </div>
+          <div class="about-feature">
+            <div class="feature-icon">💬</div>
+            <div class="feature-content">
+              <h4>Direct Support</h4>
+              <p>Join up the discord!</p>
+            </div>
+          </div>
+          <div class="about-feature">
+            <div class="feature-icon">↻</div>
+            <div class="feature-content">
+              <h4>Stock Refresh</h4>
+              <p>Inventory updates regularly. New items added based on demand and availability.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="info-bar">
+    <div class="info-container">
+      <div class="info-card" data-reveal>
+        <div class="info-card-icon">🛡️</div>
+        <h4>FA = Full Access</h4>
+        <p>Change email, password, full control over the account.</p>
+      </div>
+      <div class="info-card" data-reveal>
+        <div class="info-card-icon">📋</div>
+        <h4>NFA = Non Full Access</h4>
+        <p>Shared access. Use the account but cannot change credentials.</p>
+      </div>
+      <div class="info-card" data-reveal>
+        <div class="info-card-icon">⏱️</div>
+        <h4>20h Warranty</h4>
+        <p>Replacement warranty included with every single purchase, no exceptions.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta-section">
+    <div class="cta-bg"></div>
+    <div class="cta-content" data-reveal>
+      <h2>Ready to make a purchase?</h2>
+      <p>Join the Discord server to browse full stock, check vouches, and place orders.</p>
+      <a href="https://discord.gg/AXYrRzeJar" target="_blank" class="btn btn-primary" style="font-size: 1.05rem; padding: 16px 36px;">
+        Join the Discord
+      </a>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <h3><div class="logo-mark">CC</div> CorperationCat Store</h3>
+          <p>Everything you could need on the internet and more. Insanely low prices. Built on reputation.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Navigate</h4>
+          <a onclick="navigate('home')">Home</a>
+          <a onclick="navigate('catalog')">Catalog</a>
+          <a onclick="navigate('about')">About</a>
+        </div>
+        <div class="footer-col">
+          <h4>Links</h4>
+          <a href="https://discord.gg/AXYrRzeJar" target="_blank">Discord</a>
+          <a href="https://github.com/SWEEPSW33P/ShopStock" target="_blank">GitHub Stock</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2024 CorperationCat Store. All rights reserved.</p>
+        <div class="footer-social">
+          <a href="https://discord.gg/AXYrRzeJar" target="_blank" title="Discord">DC</a>
+          <a href="https://github.com/SWEEPSW33P/ShopStock" target="_blank" title="GitHub">GH</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+</div>
+
+<!-- PRODUCT MODAL -->
+<div class="modal-overlay" id="modalOverlay" onclick="closeModal(event)">
+  <div class="modal" id="modal" onclick="event.stopPropagation()">
+    <div class="modal-close" onclick="closeModal()">×</div>
+    <div id="modalContent"></div>
+  </div>
+</div>
+
+<script src="products.js"></script>
+<script>
+
+let currentFilter = 'All';
+let currentSearch = '';
+
+
+function navigate(page) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.getElementById('page-' + page).classList.add('active');
+
+  document.querySelectorAll('.nav-links a:not(.nav-cta)').forEach(a => a.classList.remove('active'));
+  const navMap = { home: 'navHome', catalog: 'navCatalog', about: 'navAbout' };
+  if (navMap[page]) document.getElementById(navMap[page]).classList.add('active');
+
+  window.scrollTo({ top: 0, behavior: 'instant' });
+  closeMenu();
+
+  setTimeout(() => {
+    document.querySelectorAll('#page-' + page + ' [data-reveal]').forEach(el => {
+      el.classList.remove('revealed');
+      revealObserver.observe(el);
+    });
+  }, 50);
+
+  window.location.hash = page;
+}
+
+
+function renderFeatured() {
+  const grid = document.getElementById('featuredGrid');
+  const featuredIndices = [
+    products.findIndex(p => p.name.includes('2018 Aged')),
+    products.findIndex(p => p.name.includes('Black Knight')),
+    products.findIndex(p => p.name.includes('Netflix')),
+    products.findIndex(p => p.name.includes('CS2 Prime 0')),
+    products.findIndex(p => p.name.includes('NordVPN')),
+    products.findIndex(p => p.name.includes('ChatGPT'))
+  ].filter(i => i !== -1);
+
+  grid.innerHTML = '';
+  featuredIndices.forEach((idx, i) => {
+    const card = createProductCard(products[idx], i);
+    card.setAttribute('data-reveal', '');
+    card.style.transitionDelay = (i * 0.08) + 's';
+    grid.appendChild(card);
+  });
+
+  grid.querySelectorAll('[data-reveal]').forEach(el => revealObserver.observe(el));
+}
+
+
+function createProductCard(p, index) {
+  const card = document.createElement('div');
+  card.className = 'product-card';
+  card.onclick = () => openModal(p);
+
+  const inStock = p.stock !== '0' && p.stock !== 0;
+  const stockLabel = inStock ? (p.stock === 'Infinite' || p.stock === 'Any' ? 'In Stock' : p.stock + ' left') : 'Sold Out';
+
+  card.innerHTML = `
+    <div class="product-image" style="background: ${p.gradient}">
+      <span class="product-tag">${p.category}</span>
+      <span class="product-stock ${inStock ? '' : 'out-of-stock'}">${stockLabel}</span>
+      <span class="product-icon">${p.icon}</span>
+    </div>
+    <div class="product-info">
+      <h3>${p.name}</h3>
+      <p>${p.desc}</p>
+      <div class="product-footer">
+        <span class="product-price">${p.price}</span>
+        <span class="product-buy">View →</span>
+      </div>
+    </div>
+  `;
+
+  return card;
+}
+
+
+function renderCatalog() {
+  const grid = document.getElementById('catalogGrid');
+  const countEl = document.getElementById('catalogCount');
+
+  // Get unique categories
+  const categories = ['All', ...new Set(products.map(p => p.category))];
+
+  // Render filter pills
+  const pillsContainer = document.getElementById('filterPills');
+  pillsContainer.innerHTML = '';
+  categories.forEach(cat => {
+    const pill = document.createElement('button');
+    pill.className = 'filter-pill' + (cat === currentFilter ? ' active' : '');
+    pill.textContent = cat;
+    pill.onclick = () => setFilter(cat);
+    pillsContainer.appendChild(pill);
+  });
+
+
+  let filtered = products;
+
+  if (currentFilter !== 'All') {
+    filtered = filtered.filter(p => p.category === currentFilter);
+  }
+
+  if (currentSearch) {
+    const q = currentSearch.toLowerCase();
+    filtered = filtered.filter(p =>
+      p.name.toLowerCase().includes(q) ||
+      p.desc.toLowerCase().includes(q) ||
+      p.category.toLowerCase().includes(q)
+    );
+  }
+
+
+  countEl.innerHTML = `Showing <span>${filtered.length}</span> of ${products.length} products`;
+
+  if (filtered.length === 0) {
+    grid.innerHTML = `
+      <div class="no-results">
+        <h3>No products found</h3>
+        <p>Try a different search or filter.</p>
+      </div>
+    `;
+    return;
+  }
+
+
+  if (currentFilter === 'All' && !currentSearch) {
+    grid.innerHTML = '';
+    categories.slice(1).forEach(cat => {
+      const catProducts = filtered.filter(p => p.category === cat);
+      if (catProducts.length === 0) return;
+
+      const group = document.createElement('div');
+      group.className = 'category-group';
+
+      group.innerHTML = `
+        <div class="category-header">
+          <h3>${cat}</h3>
+          <span class="category-badge">${catProducts.length} items</span>
+        </div>
+      `;
+
+      const productGrid = document.createElement('div');
+      productGrid.className = 'product-grid';
+
+      catProducts.forEach((p, i) => {
+        const card = createProductCard(p, i);
+        card.setAttribute('data-reveal', '');
+        card.style.transitionDelay = (i * 0.05) + 's';
+        productGrid.appendChild(card);
+      });
+
+      group.appendChild(productGrid);
+      grid.appendChild(group);
+    });
+  } else {
+
+    grid.innerHTML = '<div class="product-grid"></div>';
+    const productGrid = grid.querySelector('.product-grid');
+
+    filtered.forEach((p, i) => {
+      const card = createProductCard(p, i);
+      card.setAttribute('data-reveal', '');
+      card.style.transitionDelay = (i * 0.04) + 's';
+      productGrid.appendChild(card);
+    });
+  }
+
+  
+  grid.querySelectorAll('[data-reveal]').forEach(el => revealObserver.observe(el));
+}
+
+function setFilter(cat) {
+  currentFilter = cat;
+  renderCatalog();
+}
+
+function filterCatalog() {
+  currentSearch = document.getElementById('searchInput').value;
+  renderCatalog();
+}
+
+
+function openModal(p) {
+  const overlay = document.getElementById('modalOverlay');
+  const content = document.getElementById('modalContent');
+  const inStock = p.stock !== '0' && p.stock !== 0;
+  const stockText = inStock
+    ? (p.stock === 'Infinite' || p.stock === 'Any' ? 'In Stock' : p.stock + ' in stock')
+    : 'Out of Stock';
+
+  content.innerHTML = `
+    <div class="modal-category">${p.category}</div>
+    <h3>${p.name}</h3>
+    <p>${p.desc}</p>
+    <div class="modal-meta">
+      <span class="modal-price">${p.price}</span>
+      <span class="modal-stock ${inStock ? '' : 'out-of-stock'}">${stockText}</span>
+    </div>
+    <a href="${DISCORD_LINK}" target="_blank" class="modal-buy ${inStock ? '' : 'disabled'}">
+      ${inStock ? 'Purchase on Discord →' : 'Currently Unavailable'}
+    </a>
+  `;
+
+  overlay.classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeModal(event) {
+  if (event && event.target !== document.getElementById('modalOverlay') && event.type === 'click') return;
+  document.getElementById('modalOverlay').classList.remove('active');
+  document.body.style.overflow = '';
+}
+
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') closeModal();
+});
+
+
+const nav = document.getElementById('nav');
+const scrollProgress = document.getElementById('scrollProgress');
+
+window.addEventListener('scroll', () => {
+  const scrolled = window.scrollY;
+  nav.classList.toggle('scrolled', scrolled > 40);
+
+  const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+  if (docHeight > 0) {
+    scrollProgress.style.width = (scrolled / docHeight * 100) + '%';
+  }
+});
+
+
+const hamburger = document.getElementById('hamburger');
+const navLinks = document.getElementById('navLinks');
+
+function toggleMenu() {
+  hamburger.classList.toggle('active');
+  navLinks.classList.toggle('active');
+}
+
+function closeMenu() {
+  hamburger.classList.remove('active');
+  navLinks.classList.remove('active');
+}
+
+
+const revealObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('revealed');
+      revealObserver.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.12, rootMargin: '0px 0px -60px 0px' });
+
+document.querySelectorAll('[data-reveal]').forEach(el => revealObserver.observe(el));
+
+const counterObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      const el = entry.target;
+      const target = parseInt(el.dataset.count);
+      let current = 0;
+      const increment = target / 40;
+      const timer = setInterval(() => {
+        current += increment;
+        if (current >= target) {
+          el.textContent = target + '+';
+          clearInterval(timer);
+        } else {
+          el.textContent = Math.floor(current);
+        }
+      }, 30);
+      counterObserver.unobserve(el);
+    }
+  });
+}, { threshold: 0.5 });
+
+document.querySelectorAll('[data-count]').forEach(el => counterObserver.observe(el));
+
+
+renderFeatured();
+renderCatalog();
+
+
+if (window.location.hash) {
+  const page = window.location.hash.slice(1);
+  if (['home', 'catalog', 'about'].includes(page)) {
+    navigate(page);
+  }
+} else {
+  document.getElementById('navHome').classList.add('active');
+}
+</script>
+</body>
+</html>
